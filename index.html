@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rashid Digital Services | Full-Stack Web Development & Tech Solutions</title>
+    <meta name="description" content="Rashid Digital Services (RasTech) provides custom web development, graphic design, digital marketing, database solutions, and IT support.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN for Utility Enhancements -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0284c7',
+                            cyan: '#06b6d4',
+                            purple: '#8b5cf6',
+                            dark: '#0B1120',
+                            cardDark: 'rgba(15, 23, 42, 0.75)',
+                            light: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS Variables & Theme Customization */
+        :root {
+            --bg-main: #0B1120;
+            --card-bg: rgba(15, 23, 42, 0.7);
+            --border-glow: rgba(56, 189, 248, 0.2);
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #38bdf8;
+            --accent-purple: #8b5cf6;
+        }
+
+        .light-theme {
+            --bg-main: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --border-glow: rgba(14, 165, 233, 0.2);
+            --text-primary: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Ambient Animated Background Grid */
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .light-theme .grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glow);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .glass-nav {
+            background: rgba(11, 17, 32, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .light-theme .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        /* Gradient Glow Effects */
+        .glow-effect {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Micro Interactions & Hover Animations */
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 20px 30px -10px rgba(6, 182, 212, 0.25);
+        }
+
+        /* Custom Animated Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Dynamic Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Glowing Pulse for Badges */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; filter: drop-shadow(0 0 10px #06b6d4); }
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b1120;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+    </style>
+</head>
+<body class="grid-bg">
+
+    <!-- Navigation Header -->
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav py-3 transition-all duration-300" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand flex items-center gap-3 text-decoration-none" href="#hero">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-cyan-500/30">
+                    R
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-white dark-toggle-text">RasTech<span class="text-cyan-400">.Digital</span></span>
+                    <span class="block text-[10px] tracking-widest text-slate-400 uppercase -mt-1">Rashid Digital Services</span>
+                </div>
+            </a>
+
+            <button class="navbar-toggler border-0 text-white focus:outline-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars text-2xl text-cyan-400"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto items-center gap-1 my-3 my-lg-0 font-medium text-sm">
+                    <li class="nav-item"><a class="nav-link text-slate-300 hover:text-cyan-400 px-3 py-2 transition" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-slate-300 hover:text-cyan-400 px-3 py-2 transition" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-slate-300 hover:text-cyan-400 px-3 py-2 transition" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-slate-300 hover:text-cyan-400 px-3 py-2 transition" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link text-slate-300 hover:text-cyan-400 px-3 py-2 transition" href="#calculator">Price Estimator</a></li>
+                    <li class="nav-item"><a class="nav-link text-slate-300 hover:text-cyan-400 px-3 py-2 transition" href="#contact">Contact</a></li>
+                </ul>
+
+                <div class="flex items-center gap-3 ms-lg-4">
+                    <button id="themeToggleBtn" class="p-2.5 rounded-xl bg-slate-800/80 text-amber-400 hover:bg-slate-700 transition" title="Toggle Light/Dark Theme">
+                        <i class="fa-solid fa-sun text-lg"></i>
+                    </button>
+                    <a href="#contact" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/25 transition text-sm flex items-center gap-2">
+                        <span>Get Started</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Ambient Glowing Orbs -->
+    <div class="glow-effect w-96 h-96 bg-cyan-500 top-10 left-10"></div>
+    <div class="glow-effect w-96 h-96 bg-purple-600 top-1/3 right-10"></div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-32 pb-20 md:pt-44 md:pb-32 relative overflow-hidden">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-7">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold mb-6 pulse-glow">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                        <span>Available for Freelance & Custom Projects</span>
+                    </div>
+
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                        Empowering Your <br>
+                        <span class="gradient-text">Digital Presence</span>
+                    </h1>
+
+                    <p class="text-slate-400 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
+                        High-performance Web Development, Custom Graphic Design, Data Management, and Targeted Digital Marketing crafted to accelerate your brand.
+                    </p>
+
+                    <!-- Interactive Dynamic Typing Badge -->
+                    <div class="flex items-center gap-3 mb-8 p-3 rounded-2xl glass-card max-w-md">
+                        <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                        <span class="text-sm font-medium text-slate-300">Specializing in: </span>
+                        <span id="typingText" class="text-sm font-bold text-cyan-400"></span>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#services" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-base shadow-xl shadow-cyan-500/25 transition flex items-center gap-3">
+                            <i class="fa-solid fa-rocket"></i>
+                            <span>Explore Services</span>
+                        </a>
+                        <a href="#calculator" class="px-7 py-3.5 rounded-xl glass-card text-white hover:border-cyan-400/50 font-semibold text-base transition flex items-center gap-3">
+                            <i class="fa-solid fa-calculator text-cyan-400"></i>
+                            <span>Estimate Cost</span>
+                        </a>
+                    </div>
+
+                    <!-- Client Trust Metrics -->
+                    <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-800">
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-extrabold text-white">150+</h3>
+                            <p class="text-xs text-slate-400 mt-1">Projects Delivered</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-extrabold text-white">99%</h3>
+                            <p class="text-xs text-slate-400 mt-1">Client Satisfaction</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-extrabold text-white">24/7</h3>
+                            <p class="text-xs text-slate-400 mt-1">Tech Support</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Banner & Interactive Card Container -->
+                <div class="col-lg-5">
+                    <div class="relative animate-float">
+                        <div class="p-6 rounded-3xl glass-card border border-cyan-500/30 relative z-10 shadow-2xl">
+                            <!-- Code Display Header -->
+                            <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+                                <div class="flex gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                                </div>
+                                <span class="text-xs font-mono text-slate-400">RasTech_Core.config.js</span>
+                            </div>
+
+                            <!-- Mock Interactive Snippet -->
+                            <pre class="text-xs font-mono text-cyan-300 leading-relaxed overflow-x-auto p-2">
+<code><span class="text-purple-400">const</span> RashidDigital = {
+  services: [<span class="text-amber-300">'Web Dev'</span>, <span class="text-amber-300">'Graphics'</span>, <span class="text-amber-300">'SEO'</span>],
+  status: <span class="text-emerald-400">'Active & Ready'</span>,
+  quality: <span class="text-amber-300">'Premium'</span>,
+  buildSolution: <span class="text-blue-400">function</span>(client) {
+    <span class="text-purple-400">return</span> <span class="text-amber-300">`Elevating ${client.brand}`</span>;
+  }
+};</code></pre>
+
+                            <!-- Interactive Live Badge -->
+                            <div class="mt-6 p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                                        <i class="fa-solid fa-code text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">Full-Stack Solutions</h4>
+                                        <p class="text-xs text-slate-400">HTML5, JS, PHP, MySQL, WP</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400">Live</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating Accent Elements -->
+                        <div class="absolute -top-6 -right-6 p-4 rounded-2xl glass-card border border-purple-500/30 flex items-center gap-3 shadow-xl">
+                            <i class="fa-solid fa-palette text-2xl text-purple-400"></i>
+                            <div>
+                                <p class="text-xs font-bold text-white">Creative UI/UX</p>
+                                <p class="text-[10px] text-slate-400">Custom Designs</p>
+                            </div>
+                        </div>
+
+                        <div class="absolute -bottom-6 -left-6 p-4 rounded-2xl glass-card border border-cyan-500/30 flex items-center gap-3 shadow-xl">
+                            <i class="fa-solid fa-chart-line text-2xl text-cyan-400"></i>
+                            <div>
+                                <p class="text-xs font-bold text-white">Digital Marketing</p>
+                                <p class="text-[10px] text-slate-400">Ads & Growth</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Offered Section -->
+    <section id="services" class="py-24 relative">
+        <div class="container">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-cyan-400 text-xs font-extrabold uppercase tracking-widest bg-cyan-500/10 px-4 py-1.5 rounded-full border border-cyan-500/20">Our Expertise</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4 mb-4">Comprehensive Tech Solutions</h2>
+                <p class="text-slate-400 text-base md:text-lg">Tailored digital services to bring your ideas to life and scale your business seamlessly.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Service Card 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="p-8 rounded-3xl glass-card hover-lift h-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Web Design & Development</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Responsive, high-speed websites crafted using HTML5, CSS3, JavaScript, PHP, Bootstrap, and custom WordPress or Blogger themes.
+                            </p>
+                            <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Single-Page & Portfolio Sites</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> E-commerce & WordPress Customization</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Blogger Custom Layouts & Fixes</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="text-cyan-400 font-semibold text-sm hover:text-cyan-300 flex items-center gap-2 mt-auto">
+                            <span>Request Web Quote</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="p-8 rounded-3xl glass-card hover-lift h-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-pen-nib"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Graphic Design & Branding</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Eye-catching visuals, brand identities, and social graphics created using Photoshop, Illustrator, and Canva Pro.
+                            </p>
+                            <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Brand Logos & Style Guides</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Social Media Posts & Banners</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Marketing Flyers & Business Cards</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="text-purple-400 font-semibold text-sm hover:text-purple-300 flex items-center gap-2 mt-auto">
+                            <span>View Design Packages</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="p-8 rounded-3xl glass-card hover-lift h-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-bullhorn"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Digital Marketing & Ads</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Targeted ad campaigns and SEO optimization to expand your online audience and boost revenue.
+                            </p>
+                            <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Google & Meta (FB/IG) Ad Management</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> On-Page SEO & Keyword Audits</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Lead Generation Strategies</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="text-blue-400 font-semibold text-sm hover:text-blue-300 flex items-center gap-2 mt-auto">
+                            <span>Grow Your Business</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="p-8 rounded-3xl glass-card hover-lift h-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-database"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Database & Software</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Database architecture, custom management software, desktop utilities, and structured data handling.
+                            </p>
+                            <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> MySQL & SQL Server Management</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> MS Access & VB.NET Applications</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Data Processing & Automation</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="text-emerald-400 font-semibold text-sm hover:text-emerald-300 flex items-center gap-2 mt-auto">
+                            <span>Consult Database Spec</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="p-8 rounded-3xl glass-card hover-lift h-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">IT Courses & Training</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Practical 1-on-1 computer training courses designed for students and professionals looking to build tech skills.
+                            </p>
+                            <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> MS Office Suite & Automation</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Programming Fundamentals (C++, Python, Java)</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Basic to Advanced Web Design</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="text-amber-400 font-semibold text-sm hover:text-amber-300 flex items-center gap-2 mt-auto">
+                            <span>Enroll in Training</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="p-8 rounded-3xl glass-card hover-lift h-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-400 flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Tech Support & Maintenance</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Ongoing technical support, site speed optimizations, malware cleanups, and software troubleshooting.
+                            </p>
+                            <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400"></i> Website Bug Fixes & Speed Up</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400"></i> Computer OS & Software Setup</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400"></i> Remote IT Assistance</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="text-rose-400 font-semibold text-sm hover:text-rose-300 flex items-center gap-2 mt-auto">
+                            <span>Get Technical Help</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative border-t border-slate-800/80">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6">
+                    <div class="relative">
+                        <div class="p-8 rounded-3xl glass-card border border-cyan-500/20">
+                            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3">Who We Are</h4>
+                            <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-4">Dedicated to Delivering Reliable & Modern Digital Solutions</h3>
+                            <p class="text-slate-400 text-sm md:text-base leading-relaxed mb-6">
+                                At <strong>Rashid Digital Services (RasTech)</strong>, we bridge the gap between technical complexity and sleek digital presentation. Led by Rashid, our primary focus is helping businesses, freelancers, and students create an impact with high-quality software, graphic designs, and digital marketing strategies.
+                            </p>
+
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-sm font-bold text-white">Client Satisfaction First</h5>
+                                        <p class="text-xs text-slate-400">Clear communication, punctual delivery, and flexible revision cycles.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+                                    <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-microchip"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-sm font-bold text-white">Modern Tech Stack</h5>
+                                        <p class="text-xs text-slate-400">Leveraging standard web practices, clean code architectures, and high-conversion layouts.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <!-- Technical Skills Grid -->
+                    <div class="p-8 rounded-3xl glass-card">
+                        <h4 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-cyan-400"></i>
+                            <span>Core Tech Competencies</span>
+                        </h4>
+
+                        <div class="space-y-4">
+                            <!-- Skill 1 -->
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span class="text-slate-300">Frontend Web Dev (HTML5, CSS3, JS, Bootstrap, Tailwind)</span>
+                                    <span class="text-cyan-400">95%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 2 -->
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span class="text-slate-300">Graphic Design (Photoshop, Illustrator, Canva)</span>
+                                    <span class="text-purple-400">90%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 3 -->
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span class="text-slate-300">CMS Development (WordPress & Custom Blogger Themes)</span>
+                                    <span class="text-emerald-400">88%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 4 -->
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span class="text-slate-300">Database & Desktop Tools (MySQL, MS Access, VB.NET)</span>
+                                    <span class="text-amber-400">85%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 5 -->
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span class="text-slate-300">Digital Marketing & SEO</span>
+                                    <span class="text-rose-400">82%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-rose-500 to-red-500 rounded-full" style="width: 82%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filterable Portfolio Showcase -->
+    <section id="portfolio" class="py-24 relative">
+        <div class="container">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-cyan-400 text-xs font-extrabold uppercase tracking-widest bg-cyan-500/10 px-4 py-1.5 rounded-full border border-cyan-500/20">Featured Work</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4 mb-4">Our Recent Projects</h2>
+                <p class="text-slate-400 text-base">Explore a showcase of custom web builds, graphics, and tech solutions created for clients.</p>
+            </div>
+
+            <!-- Portfolio Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mb-12" id="portfolioFilters">
+                <button class="px-5 py-2 rounded-xl text-xs font-bold transition glass-card border-cyan-400 text-cyan-400 active-filter" data-filter="all">All Projects</button>
+                <button class="px-5 py-2 rounded-xl text-xs font-bold transition glass-card text-slate-400 hover:text-white" data-filter="web">Web Design</button>
+                <button class="px-5 py-2 rounded-xl text-xs font-bold transition glass-card text-slate-400 hover:text-white" data-filter="graphics">Graphics & Branding</button>
+                <button class="px-5 py-2 rounded-xl text-xs font-bold transition glass-card text-slate-400 hover:text-white" data-filter="software">Database & Software</button>
+            </div>
+
+            <!-- Filterable Portfolio Grid -->
+            <div class="row g-4" id="portfolioGrid">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="web">
+                    <div class="rounded-3xl glass-card overflow-hidden hover-lift group">
+                        <div class="h-48 bg-gradient-to-tr from-slate-800 to-slate-900 p-6 flex items-center justify-center relative overflow-hidden">
+                            <i class="fa-solid fa-laptop-code text-6xl text-cyan-500/30 group-hover:scale-110 transition duration-300"></i>
+                            <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold text-cyan-400 uppercase tracking-widest">Web Development</span>
+                            <h4 class="text-lg font-bold text-white mt-1 mb-2">Corporate Agency Portal</h4>
+                            <p class="text-xs text-slate-400 mb-4">Fully responsive Bootstrap 5 agency portal with dark mode integration and lead forms.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">HTML / JS / Bootstrap</span>
+                                <a href="#contact" class="text-cyan-400 text-xs font-bold hover:underline">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="graphics">
+                    <div class="rounded-3xl glass-card overflow-hidden hover-lift group">
+                        <div class="h-48 bg-gradient-to-tr from-purple-900/40 to-slate-900 p-6 flex items-center justify-center relative overflow-hidden">
+                            <i class="fa-solid fa-palette text-6xl text-purple-500/30 group-hover:scale-110 transition duration-300"></i>
+                            <div class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold text-purple-400 uppercase tracking-widest">Branding & Graphics</span>
+                            <h4 class="text-lg font-bold text-white mt-1 mb-2">Tech Brand Identity Package</h4>
+                            <p class="text-xs text-slate-400 mb-4">Vector logo design, business card templates, and social media brand guidelines.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">Photoshop / Illustrator</span>
+                                <a href="#contact" class="text-purple-400 text-xs font-bold hover:underline">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="web">
+                    <div class="rounded-3xl glass-card overflow-hidden hover-lift group">
+                        <div class="h-48 bg-gradient-to-tr from-blue-900/40 to-slate-900 p-6 flex items-center justify-center relative overflow-hidden">
+                            <i class="fa-brands fa-blogger text-6xl text-blue-500/30 group-hover:scale-110 transition duration-300"></i>
+                            <div class="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Custom Blogger Theme</span>
+                            <h4 class="text-lg font-bold text-white mt-1 mb-2">SEO Optimized Tech Blog</h4>
+                            <p class="text-xs text-slate-400 mb-4">Custom Blogspot XML/CSS template with high Google PageSpeed score and AdSense layout.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">Blogger / XML / CSS3</span>
+                                <a href="#contact" class="text-blue-400 text-xs font-bold hover:underline">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="software">
+                    <div class="rounded-3xl glass-card overflow-hidden hover-lift group">
+                        <div class="h-48 bg-gradient-to-tr from-emerald-900/40 to-slate-900 p-6 flex items-center justify-center relative overflow-hidden">
+                            <i class="fa-solid fa-database text-6xl text-emerald-500/30 group-hover:scale-110 transition duration-300"></i>
+                            <div class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Database Application</span>
+                            <h4 class="text-lg font-bold text-white mt-1 mb-2">Inventory Management Utility</h4>
+                            <p class="text-xs text-slate-400 mb-4">Desktop inventory tracking application built using VB.NET and MySQL integration.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">VB.NET / MySQL</span>
+                                <a href="#contact" class="text-emerald-400 text-xs font-bold hover:underline">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="graphics">
+                    <div class="rounded-3xl glass-card overflow-hidden hover-lift group">
+                        <div class="h-48 bg-gradient-to-tr from-amber-900/40 to-slate-900 p-6 flex items-center justify-center relative overflow-hidden">
+                            <i class="fa-solid fa-bullhorn text-6xl text-amber-500/30 group-hover:scale-110 transition duration-300"></i>
+                            <div class="absolute inset-0 bg-amber-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest">Marketing Graphics</span>
+                            <h4 class="text-lg font-bold text-white mt-1 mb-2">Social Media Ad Campaign Banners</h4>
+                            <p class="text-xs text-slate-400 mb-4">High-conversion promotional social media graphics for Facebook & Instagram ad pushes.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">Canva Pro / Photoshop</span>
+                                <a href="#contact" class="text-amber-400 text-xs font-bold hover:underline">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="col-md-6 col-lg-4 portfolio-item" data-category="web">
+                    <div class="rounded-3xl glass-card overflow-hidden hover-lift group">
+                        <div class="h-48 bg-gradient-to-tr from-rose-900/40 to-slate-900 p-6 flex items-center justify-center relative overflow-hidden">
+                            <i class="fa-solid fa-cart-shopping text-6xl text-rose-500/30 group-hover:scale-110 transition duration-300"></i>
+                            <div class="absolute inset-0 bg-rose-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold text-rose-400 uppercase tracking-widest">E-Commerce Solution</span>
+                            <h4 class="text-lg font-bold text-white mt-1 mb-2">WordPress Product Store</h4>
+                            <p class="text-xs text-slate-400 mb-4">WooCommerce store setup with custom checkout flow and payment gateway configuration.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">WordPress / WooCommerce</span>
+                                <a href="#contact" class="text-rose-400 text-xs font-bold hover:underline">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Quote Estimator Tool -->
+    <section id="calculator" class="py-24 border-t border-b border-slate-800/80 bg-slate-900/30 relative">
+        <div class="container">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-cyan-400 text-xs font-extrabold uppercase tracking-widest bg-cyan-500/10 px-4 py-1.5 rounded-full border border-cyan-500/20">Instant Estimation</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4 mb-4">Project Cost Calculator</h2>
+                <p class="text-slate-400 text-base">Select the requirements for your upcoming project to estimate pricing and turnaround time instantly.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="p-8 md:p-12 rounded-3xl glass-card border border-cyan-500/30">
+                        <form id="calcForm" onsubmit="return false;">
+                            <div class="row g-4">
+                                <!-- Service Selection -->
+                                <div class="col-md-6">
+                                    <label class="block text-sm font-bold text-slate-200 mb-2">Select Primary Service</label>
+                                    <select id="calcService" class="w-full bg-slate-900/90 border border-slate-700 text-slate-200 rounded-xl p-3 focus:border-cyan-400 focus:outline-none text-sm">
+                                        <option value="120">Single-Page Website (HTML/CSS/JS) - ~$120</option>
+                                        <option value="250">Multi-Page Corporate Website - ~$250</option>
+                                        <option value="180">Custom WordPress / Blogger Theme - ~$180</option>
+                                        <option value="80">Graphic Design & Logo Branding - ~$80</option>
+                                        <option value="150">Database & Desktop Software Application - ~$150</option>
+                                        <option value="100">Digital Marketing & SEO Setup - ~$100</option>
+                                    </select>
+                                </div>
+
+                                <!-- Project Complexity -->
+                                <div class="col-md-6">
+                                    <label class="block text-sm font-bold text-slate-200 mb-2">Project Scale / Pages</label>
+                                    <select id="calcScale" class="w-full bg-slate-900/90 border border-slate-700 text-slate-200 rounded-xl p-3 focus:border-cyan-400 focus:outline-none text-sm">
+                                        <option value="1">Basic Standard (1 - 3 Pages / Elements)</option>
+                                        <option value="1.5">Medium (4 - 8 Pages / Features)</option>
+                                        <option value="2.2">Large Scale (Custom Dashboard / Multi-Feature)</option>
+                                    </select>
+                                </div>
+
+                                <!-- Additional Features Checkboxes -->
+                                <div class="col-12 mt-4">
+                                    <label class="block text-sm font-bold text-slate-200 mb-3">Add-on Features</label>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800 cursor-pointer hover:border-cyan-500/40">
+                                            <input type="checkbox" class="calc-addon accent-cyan-400 w-4 h-4" value="40">
+                                            <span class="text-xs text-slate-300">Speed Optimization (+$40)</span>
+                                        </label>
+                                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800 cursor-pointer hover:border-cyan-500/40">
+                                            <input type="checkbox" class="calc-addon accent-cyan-400 w-4 h-4" value="50">
+                                            <span class="text-xs text-slate-300">Content Writing & Copy (+$50)</span>
+                                        </label>
+                                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800 cursor-pointer hover:border-cyan-500/40">
+                                            <input type="checkbox" class="calc-addon accent-cyan-400 w-4 h-4" value="60">
+                                            <span class="text-xs text-slate-300">Express 48h Delivery (+$60)</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Estimated Result Box -->
+                            <div class="mt-8 pt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                                <div>
+                                    <p class="text-xs text-slate-400">Estimated Investment</p>
+                                    <div class="text-3xl md:text-4xl font-extrabold text-cyan-400 flex items-center gap-1">
+                                        <span>$</span><span id="estimatedCost">120</span>
+                                        <span class="text-xs font-normal text-slate-400 ms-1">(USD Approx)</span>
+                                    </div>
+                                </div>
+
+                                <button type="button" onclick="sendQuoteToWhatsApp()" class="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                                    <span>Discuss Quote on WhatsApp</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 relative">
+        <div class="container">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-cyan-400 text-xs font-extrabold uppercase tracking-widest bg-cyan-500/10 px-4 py-1.5 rounded-full border border-cyan-500/20">Client Feedback</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4 mb-4">What Our Clients Say</h2>
+                <p class="text-slate-400 text-base">Real reviews from businesses and individuals who used Rashid Digital Services.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Testimonial 1 -->
+                <div class="col-md-4">
+                    <div class="p-6 rounded-3xl glass-card h-100 flex flex-col justify-between hover-lift">
+                        <div>
+                            <div class="flex text-amber-400 text-xs mb-3 gap-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-xs leading-relaxed italic mb-6">
+                                "Rashid redesigned our corporate website with incredible speed and attention to detail. The site is super fast, responsive, and easy to navigate."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
+                            <div class="w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-400 font-bold flex items-center justify-center text-sm">
+                                AH
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-bold text-white">Ali Hassan</h5>
+                                <p class="text-[10px] text-slate-400">Business Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="col-md-4">
+                    <div class="p-6 rounded-3xl glass-card h-100 flex flex-col justify-between hover-lift">
+                        <div>
+                            <div class="flex text-amber-400 text-xs mb-3 gap-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-xs leading-relaxed italic mb-6">
+                                "The social media graphics and brand logos created by RasTech Digital completely elevated our product launch. Highly recommended!"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
+                            <div class="w-10 h-10 rounded-full bg-purple-500/20 text-purple-400 font-bold flex items-center justify-center text-sm">
+                                SK
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-bold text-white">Sara Khan</h5>
+                                <p class="text-[10px] text-slate-400">E-Commerce Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="col-md-4">
+                    <div class="p-6 rounded-3xl glass-card h-100 flex flex-col justify-between hover-lift">
+                        <div>
+                            <div class="flex text-amber-400 text-xs mb-3 gap-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-xs leading-relaxed italic mb-6">
+                                "Excellent desktop software and MySQL database setup for our shop inventory. Smooth integration and prompt technical support whenever needed."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-sm">
+                                MR
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-bold text-white">Muhammad Rizwan</h5>
+                                <p class="text-[10px] text-slate-400">Store Director</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative border-t border-slate-800/80">
+        <div class="container">
+            <div class="row gy-5">
+                <!-- Contact Information Card -->
+                <div class="col-lg-5">
+                    <div class="p-8 md:p-10 rounded-3xl glass-card h-100 flex flex-col justify-between">
+                        <div>
+                            <span class="text-cyan-400 text-xs font-extrabold uppercase tracking-widest bg-cyan-500/10 px-4 py-1.5 rounded-full border border-cyan-500/20">Get In Touch</span>
+                            <h2 class="text-3xl font-extrabold text-white mt-4 mb-4">Let's Build Something Great Together</h2>
+                            <p class="text-slate-400 text-sm mb-8">Have a project in mind, need tech support, or want to consult on digital services? Reach out directly!</p>
+
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center text-xl">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-400">Email Address</p>
+                                        <a href="mailto:rashiddigitalservices@gmail.com" class="text-sm font-bold text-white hover:text-cyan-400 transition">rashiddigitalservices@gmail.com</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-400">WhatsApp / Phone</p>
+                                        <a href="https://wa.me/923000000000" target="_blank" class="text-sm font-bold text-white hover:text-emerald-400 transition">+92 300 0000000</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center text-xl">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-400">Location</p>
+                                        <p class="text-sm font-bold text-white">Pakistan (Serving Worldwide Clients)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Handles -->
+                        <div class="mt-10 pt-6 border-t border-slate-800">
+                            <p class="text-xs font-bold text-slate-300 mb-3 uppercase tracking-wider">Connect With Us</p>
+                            <div class="flex gap-3">
+                                <a href="https://github.com" target="_blank" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                    <i class="fa-brands fa-github text-lg"></i>
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                    <i class="fa-brands fa-linkedin-in text-lg"></i>
+                                </a>
+                                <a href="https://facebook.com" target="_blank" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                    <i class="fa-brands fa-facebook-f text-lg"></i>
+                                </a>
+                                <a href="https://rasdigitalservices.blogspot.com" target="_blank" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition" title="Blogspot Site">
+                                    <i class="fa-brands fa-blogger-b text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Contact Form -->
+                <div class="col-lg-7">
+                    <div class="p-8 md:p-10 rounded-3xl glass-card">
+                        <h3 class="text-xl font-bold text-white mb-6">Send a Message</h3>
+
+                        <div id="formAlert" class="hidden p-4 mb-6 rounded-2xl text-xs font-semibold"></div>
+
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="block text-xs font-bold text-slate-300 mb-2">Your Name *</label>
+                                    <input type="text" id="senderName" required placeholder="John Doe" class="w-full bg-slate-900/80 border border-slate-700 text-slate-200 rounded-xl p-3 focus:border-cyan-400 focus:outline-none text-sm">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="block text-xs font-bold text-slate-300 mb-2">Email Address *</label>
+                                    <input type="email" id="senderEmail" required placeholder="john@example.com" class="w-full bg-slate-900/80 border border-slate-700 text-slate-200 rounded-xl p-3 focus:border-cyan-400 focus:outline-none text-sm">
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="block text-xs font-bold text-slate-300 mb-2">Subject / Interested Service</label>
+                                    <input type="text" id="senderSubject" placeholder="e.g. New Web Design Project" class="w-full bg-slate-900/80 border border-slate-700 text-slate-200 rounded-xl p-3 focus:border-cyan-400 focus:outline-none text-sm">
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="block text-xs font-bold text-slate-300 mb-2">Message *</label>
+                                    <textarea id="senderMessage" required rows="5" placeholder="Briefly describe your project requirements or question..." class="w-full bg-slate-900/80 border border-slate-700 text-slate-200 rounded-xl p-3 focus:border-cyan-400 focus:outline-none text-sm"></textarea>
+                                </div>
+
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/20 transition flex items-center justify-center gap-2">
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                        <span>Send Message</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923000000000?text=Hello%20Rashid%20Digital%20Services,%20I%20would%20like%20to%20inquire%20about%20your%20tech%20services." target="_blank" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center justify-center text-2xl shadow-2xl z-50 transition transform hover:scale-110" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer Container -->
+    <footer class="py-12 glass-nav border-t border-slate-800 text-xs text-slate-400">
+        <div class="container">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+                <div>
+                    <a href="#hero" class="text-lg font-bold text-white text-decoration-none">RasTech<span class="text-cyan-400">.Digital</span></a>
+                    <p class="mt-1">© <span id="yearSpan"></span> Rashid Digital Services. All rights reserved.</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6 font-medium">
+                    <a href="#hero" class="hover:text-cyan-400 transition">Home</a>
+                    <a href="#services" class="hover:text-cyan-400 transition">Services</a>
+                    <a href="#portfolio" class="hover:text-cyan-400 transition">Portfolio</a>
+                    <a href="#calculator" class="hover:text-cyan-400 transition">Cost Estimator</a>
+                    <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+                </div>
+
+                <div>
+                    <a href="#hero" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white transition inline-flex items-center gap-2">
+                        <span>Back to Top</span>
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Interactive Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set Dynamic Year
+            document.getElementById('yearSpan').textContent = new Date().getFullYear();
+
+            // 1. Dynamic Typing Effect in Hero Section
+            const phrases = ["Web Development", "Graphic Design", "Digital Marketing", "Database Solutions", "IT Support"];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 100;
+            const typingElement = document.getElementById('typingText');
+
+            function typeEffect() {
+                const currentPhrase = phrases[phraseIndex];
+                if (isDeleting) {
+                    typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentPhrase.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 1800);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(typeEffect, 500);
+                } else {
+                    setTimeout(typeEffect, isDeleting ? 50 : typingSpeed);
+                }
+            }
+            typeEffect();
+
+            // 2. Portfolio Category Filter Logic
+            const filterButtons = document.querySelectorAll('#portfolioFilters button');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => {
+                        b.classList.remove('border-cyan-400', 'text-cyan-400');
+                        b.classList.add('text-slate-400');
+                    });
+                    btn.classList.add('border-cyan-400', 'text-cyan-400');
+                    btn.classList.remove('text-slate-400');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    portfolioItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // 3. Project Cost Calculator Logic
+            const calcService = document.getElementById('calcService');
+            const calcScale = document.getElementById('calcScale');
+            const calcAddons = document.querySelectorAll('.calc-addon');
+            const estimatedCostSpan = document.getElementById('estimatedCost');
+
+            function calculateTotal() {
+                let basePrice = parseFloat(calcService.value) || 0;
+                let scaleMultiplier = parseFloat(calcScale.value) || 1;
+                let addonsPrice = 0;
+
+                calcAddons.forEach(addon => {
+                    if (addon.checked) {
+                        addonsPrice += parseFloat(addon.value);
+                    }
+                });
+
+                let total = (basePrice * scaleMultiplier) + addonsPrice;
+                estimatedCostSpan.textContent = Math.round(total);
+            }
+
+            calcService.addEventListener('change', calculateTotal);
+            calcScale.addEventListener('change', calculateTotal);
+            calcAddons.forEach(addon => addon.addEventListener('change', calculateTotal));
+
+            // 4. WhatsApp Quote Export
+            window.sendQuoteToWhatsApp = function() {
+                const serviceName = calcService.options[calcService.selectedIndex].text;
+                const cost = estimatedCostSpan.textContent;
+                const message = `Hello Rashid Digital Services! I used your web estimator and calculated a quote of ~$${cost} for: ${serviceName}. I'd like to discuss details.`;
+                const encodedMsg = encodeURIComponent(message);
+                window.open(`https://wa.me/923000000000?text=${encodedMsg}`, '_blank');
+            };
+
+            // 5. Light/Dark Mode Theme Toggle
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            let isLight = false;
+
+            themeToggleBtn.addEventListener('click', () => {
+                isLight = !isLight;
+                if (isLight) {
+                    document.body.classList.add('light-theme');
+                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon text-lg text-slate-800"></i>';
+                } else {
+                    document.body.classList.remove('light-theme');
+                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun text-lg text-amber-400"></i>';
+                }
+            });
+
+            // 6. Contact Form Submission (Mock Handler with Alert Box)
+            window.handleFormSubmit = function(event) {
+                event.preventDefault();
+                const formAlert = document.getElementById('formAlert');
+                const name = document.getElementById('senderName').value;
+
+                formAlert.className = "p-4 mb-6 rounded-2xl text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 block";
+                formAlert.textContent = `Thank you, ${name}! Your message has been sent successfully. We will get back to you shortly.`;
+
+                document.getElementById('contactForm').reset();
+            };
+        });
+    </script>
+</body>
+</html>
